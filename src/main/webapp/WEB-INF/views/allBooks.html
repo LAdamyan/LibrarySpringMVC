@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.thymeleaf.org/extras/thymeleaf-extras-java8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All books</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="wrapper">
+    <h2>All Books</h2>
+    <br>
+    <table>
+        <tbody>
+        <tr th:each="book : ${session.books}">
+            <td th:text="${book.bookName}"></td>
+            <td><a th:href="@{/editBooks(bookId=${book.id})}">Edit</a></td>
+            <td><a th:href="@{/deleteBooks(bookId=${book.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/">Login</a>
+</div>
+</body>
+</html>

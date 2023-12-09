@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="wrapper">
+    <h2>All Books</h2>
+    <br>
+    <table>
+        <tbody>
+        <tr th:each="book : ${session.assignedBooks}">
+            <td th:text="${book.bookName}"></td>
+            <td th:each="user : ${session.users}" th:if="${user.id == book.userId}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            </td>
+            <td><a th:href="@{/unAssignBook(bookId=${book.id})}">Unassign</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <span th:if="${#request.unassignError}" style="color: red" th:text="${#request.unassignError}"></span>
+    <span th:if="${#request.unassignSuccess}" style="color: green" th:text="${#request.unassignSuccess}"></span>
+    <br>
+    <a href="/">Login</a>
+</div>
+</body>
+</html>

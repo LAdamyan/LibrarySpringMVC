@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="wrapper">
+    <h2>Admin</h2>
+    <form th:action="@{/assign}" method="post">
+        <span th:if="${not #strings.isEmpty(requestScope.successAssign)}" style="color: green" th:text="${requestScope.successAssign}"></span>
+
+        <div class="input-box">
+            <label for="selectuser">Select User:
+                <select name="selectedUser" id="selectuser">
+                    <option th:each="user : ${sessionScope.users}" th:value="${user.id}" th:text="${user.name} ${user.lastName}"></option>
+                </select>
+            </label>
+        </div>
+
+        <br>
+        <div class="input-box">
+            <label for="selectbook">Select Book:
+                <select name="selectedBook" id="selectbook">
+                    <option th:each="book : ${sessionScope.unassignedBooks}" th:value="${book.id}" th:text="${book.bookName} / ${book.authorName}"></option>
+                </select>
+            </label>
+        </div>
+
+        <br>
+        <div class="input-box button">
+            <input type="submit" value="Assign">
+        </div>
+    </form>
+
+    <ul>
+        <li><a href="/">Login Page</a></li>
+        <li><a href="/allUsers">Show all users</a></li>
+        <li><a href="/allBooks">Show all books</a></li>
+        <li><a href="/assignedBooks">Show assigned books</a></li>
+    </ul>
+</div>
+</body>
+</html>

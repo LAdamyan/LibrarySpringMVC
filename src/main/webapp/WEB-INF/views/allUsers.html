@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="wrapper">
+    <h2>All Users</h2>
+    <br>
+    <table>
+        <tbody>
+        <tr th:each="user : ${session.users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td><a th:href="@{/editUsers(userId=${user.id})}">Edit</a></td>
+            <td><a th:href="@{/deleteUsers(userId=${user.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/">Login</a>
+</div>
+</body>
+</html>
