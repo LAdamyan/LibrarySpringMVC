@@ -10,7 +10,7 @@
 <div class="wrapper">
     <h2>Admin</h2>
     <form th:action="@{/assign}" method="post">
-        <span th:if="${not #strings.isEmpty(requestScope.successAssign)}" style="color: green" th:text="${requestScope.successAssign}"></span>
+        <span th:if="${requestScope.successAssign !=null}" style="color: green" th:text="${requestScope.successAssign}"></span>
 
         <div class="input-box">
             <label for="selectuser">Select User:

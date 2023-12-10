@@ -3,6 +3,8 @@ package com.epam.libraryspringmvc.controller;
 import com.epam.libraryspringmvc.manager.BookManager;
 import com.epam.libraryspringmvc.manager.UserManager;
 
+import com.epam.libraryspringmvc.manager.impl.BookManagerImpl;
+import com.epam.libraryspringmvc.manager.impl.UserManagerImpl;
 import com.epam.libraryspringmvc.model.Book;
 import com.epam.libraryspringmvc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/assign")
 public class AssignController {
 
-    @Autowired
-    private UserManager <Integer, User> userManager;
 
+    private UserManagerImpl userManager;
+
+    private BookManagerImpl bookManager;
     @Autowired
-    private BookManager <Integer,Book>bookManager;
+    public AssignController(UserManagerImpl userManager, BookManagerImpl bookManager) {
+        this.userManager = userManager;
+        this.bookManager = bookManager;
+    }
 
     @PostMapping
     public String assignBook(@RequestParam("selectedUser") int selectedUser,
